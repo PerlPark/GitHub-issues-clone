@@ -30,7 +30,7 @@ function Issues() {
   return (
     <div className="flex flex-col h-full">
       <ul ref={targetRef} className="flex-grow overflow-auto">
-        {issues.map(({ number, title, created_at }, idx) => (
+        {issues.map(({ number, title, created_at, comments }, idx) => (
           <React.Fragment key={number}>
             <li key={number} className="border-t py-3 px-5">
               {(idx + 1) % 10 === 1 && (
@@ -49,6 +49,7 @@ function Issues() {
                   {new Intl.DateTimeFormat("ko-KR").format(
                     new Date(created_at)
                   )}
+                  , 코멘트: {comments.toLocaleString("ko-KR")}
                 </div>
               </button>
             </li>
