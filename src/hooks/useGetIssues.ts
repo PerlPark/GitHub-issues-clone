@@ -11,11 +11,14 @@ const useGetIssues = () => {
     });
 
     octokit
-      .request("GET /repos/angular/angular-cli/issues", {
-        headers: {
-          "X-GitHub-Api-Version": "2022-11-28",
-        },
-      })
+      .request(
+        "GET /repos/angular/angular-cli/issues?state=open&sort=comments&direction=desc",
+        {
+          headers: {
+            "X-GitHub-Api-Version": "2022-11-28",
+          },
+        }
+      )
       .then((res) => setData(res.data))
       .catch(() => setIsError(true));
   }, []);
