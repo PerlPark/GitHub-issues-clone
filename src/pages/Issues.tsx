@@ -26,7 +26,7 @@ function Issues() {
   }
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-full">
       <ul ref={targetRef} className="flex-grow overflow-auto">
         {issues.map(({ number, title, created_at }) => (
           <li key={number} className="border-t py-3 px-5">
