@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import useGetIssues from "./hooks/useGetIssues";
 import Layout from "./components/Layout";
+import Footer from "./components/Footer";
 
 function App() {
   // 페이지 State
@@ -28,6 +29,7 @@ function App() {
       <button type="button" onClick={getNextPage}>
         issue 10개 로딩 시작
       </button>
+      <Footer />
     </Layout>
   );
 }
