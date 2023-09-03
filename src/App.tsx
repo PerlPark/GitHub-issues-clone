@@ -1,9 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import useGetIssues from "./hooks/useGetIssues";
 
 function App() {
-  const { data, isError } = useGetIssues();
+  // 페이지 State
+  const [page, setPage] = useState(0);
+
+  // 데이터 호출 훅
+  const { data, isError } = useGetIssues({
+    page,
+  });
 
   useEffect(() => {
     console.log(data);
