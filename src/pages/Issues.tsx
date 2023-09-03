@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import useScrollDown from "../hooks/useScrollDown";
 import { setNumber } from "../slices/issueDetailSlice";
 import React from "react";
+import Ad from "../components/Ad";
 
 function Issues() {
   const dispatch = useAppDispatch();
@@ -46,21 +47,7 @@ function Issues() {
                 </div>
               </button>
             </li>
-            {(idx + 1) % 10 === 0 && (
-              <div className="w-full h-32 bg-slate-100">
-                <a
-                  href="https://thingsflow.com/ko/home"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    src="https://hellobot-test.s3.ap- northeast-2.amazonaws.com/image/01fdd797-0477-4717-8d70-8551150463f7"
-                    alt="광고 이미지"
-                    className="w-full"
-                  />
-                </a>
-              </div>
-            )}
+            {(idx + 1) % 10 === 0 && <Ad />}
           </React.Fragment>
         ))}
       </ul>
