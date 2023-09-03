@@ -1,30 +1,35 @@
-import { useEffect } from "react";
 import "./App.css";
 import useGetIssues from "./hooks/useGetIssues";
-import Layout from "./components/Layout";
 import Footer from "./components/Footer";
 import { useAppSelector } from "./app/hooks";
 
 function App() {
-  const { data, page } = useAppSelector((state) => state.issues);
+  const { data: issues, page } = useAppSelector((state) => state.issues);
 
   // 데이터 호출 훅
   const { isError } = useGetIssues({
     page,
   });
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   if (isError) {
-    return <Layout>API 호출 오류가 발생했습니다.</Layout>;
+    return <div>API 호출 오류가 발생했습니다.</div>;
   }
 
   return (
-    <Layout>
+    <div className="flex flex-col h-screen">
+      <ul className="flex-grow overflow-auto">
+        {issues.map(({ number, title, created_at }) => (
+          <li key={number} className="border-t py-3 px-5">
+            <h2 className="font-bold text-lg mb-1">{title}</h2>
+            <div className="text-sm text-gray-600">
+              #{number}, 작성일:{" "}
+              {new Intl.DateTimeFormat("ko-KR").format(new Date(created_at))}
+            </div>
+          </li>
+        ))}
+      </ul>
       <Footer />
-    </Layout>
+    </div>
   );
 }
 
