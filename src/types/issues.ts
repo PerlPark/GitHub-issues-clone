@@ -1,6 +1,4 @@
-interface User {
-  login: string;
-}
+import { User } from "./user";
 
 export interface Issue {
   number: number;
