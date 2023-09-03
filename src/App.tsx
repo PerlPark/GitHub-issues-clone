@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import useGetIssues from "./hooks/useGetIssues";
 import Layout from "./components/Layout";
 import Footer from "./components/Footer";
+import { useAppSelector } from "./app/hooks";
 
 function App() {
-  // 페이지 State
-  const [page, setPage] = useState(0);
-  const getNextPage = () => {
-    setPage((page) => page + 1);
-  };
+  const { data, page } = useAppSelector((state) => state.issues);
 
   // 데이터 호출 훅
-  const { data, isError } = useGetIssues({
+  const { isError } = useGetIssues({
     page,
   });
 
@@ -26,9 +23,6 @@ function App() {
 
   return (
     <Layout>
-      <button type="button" onClick={getNextPage}>
-        issue 10개 로딩 시작
-      </button>
       <Footer />
     </Layout>
   );

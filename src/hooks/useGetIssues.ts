@@ -1,6 +1,7 @@
 import { Octokit } from "octokit";
 import { useEffect, useState } from "react";
-import type { Issue } from "../types/issues";
+import { useAppDispatch } from "../app/hooks";
+import { setData } from "../slices/issuesSlice";
 
 /**
  * 깃허브 특정 저장소 이슈 목록 가져오기
@@ -13,7 +14,7 @@ interface UseGetIssues {
 }
 
 const useGetIssues = ({ page }: UseGetIssues) => {
-  const [data, setData] = useState<Issue[]>([]);
+  const dispatch = useAppDispatch();
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -32,11 +33,11 @@ const useGetIssues = ({ page }: UseGetIssues) => {
           },
         }
       )
-      .then((res) => setData(res.data))
+      .then((res) => dispatch(setData(res.data)))
       .catch(() => setIsError(true));
-  }, [page]);
+  }, [dispatch, page]);
 
-  return { data, isError };
+  return { isError };
 };
 
 export default useGetIssues;
