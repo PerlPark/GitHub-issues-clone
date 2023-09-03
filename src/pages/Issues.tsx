@@ -33,6 +33,11 @@ function Issues() {
         {issues.map(({ number, title, created_at }, idx) => (
           <React.Fragment key={number}>
             <li key={number} className="border-t py-3 px-5">
+              {(idx + 1) % 10 === 1 && (
+                <div className="mx-auto p-4 mb-4 italic bg-sky-100 text-slate-500 rounded text-center">
+                  issue 10개 로딩 시작
+                </div>
+              )}
               <button
                 className="text-left"
                 type="button"
