@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import useGetIssues from "./hooks/useGetIssues";
+import Layout from "./components/Layout";
 
 function App() {
   // 페이지 State
@@ -19,15 +20,15 @@ function App() {
   }, [data]);
 
   if (isError) {
-    return <div className="App">API 호출 오류가 발생했습니다.</div>;
+    return <Layout>API 호출 오류가 발생했습니다.</Layout>;
   }
 
   return (
-    <div className="App">
+    <Layout>
       <button type="button" onClick={getNextPage}>
         issue 10개 로딩 시작
       </button>
-    </div>
+    </Layout>
   );
 }
 
