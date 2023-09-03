@@ -1,13 +1,15 @@
 import { Octokit } from "octokit";
 import { useEffect, useState } from "react";
+import type { Issue } from "../types/issues";
 
 /**
  * 깃허브 특정 저장소 이슈 목록 가져오기
  * https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#list-repository-issues
  * @returns data, isError
  */
+
 const useGetIssues = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Issue[]>([]);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
