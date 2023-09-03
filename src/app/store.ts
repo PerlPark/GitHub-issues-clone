@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import issuesReducer from "../slices/issuesSlice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    issues: issuesReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
