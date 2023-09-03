@@ -1,11 +1,11 @@
 import Detail from "./pages/Detail";
 import Issues from "./pages/Issues";
+import { useAppSelector } from "./app/hooks";
 
 function App() {
-  const path = window.location.pathname.split("/");
-  const isDetail = path[1] === "detail" && path[2];
+  const { number } = useAppSelector((state) => state.issueDetail);
 
-  return <main>{isDetail ? <Detail /> : <Issues />}</main>;
+  return <main>{!!number ? <Detail /> : <Issues />}</main>;
 }
 
 export default App;
